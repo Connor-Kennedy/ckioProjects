@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <title>Quiz App</title>
+</head>
+<body>
+    
+
+    
+
+    
+    <div class="container">
+
+        <div class="intro-block" id="intro-block">
+            <h1 class=title>quiz.c-k.io</h1>
+            <p1>Welcome to my maths quiz! Created from following the below tutorial, with a few personal touches.</p1>
+            <br>
+            <br>
+            <a href='https://www.youtube.com/watch?v=riDzcEQbX6k'>Build A Quiz App With JavaScript</a>
+            
+        </div>
+
+        <div id="question-container" class="hide">
+            <div class=question-container>
+                
+                <div class="questionContainerLeft">
+                    <div class=question id="question">Question</div>
+                </div>
+
+                <div class=questionContainerRight>
+                    <div class=scoreboard id="scoreboard">
+                        <div class=questionCount id="question-count">Question  of </div>
+                        <div class=score id="score">Score:</div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div id="answer-buttons" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
+        </div>
+    </div>
+</body>
+</html>
