@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+</head>
+<body>
+
+<div class="container">
+    <canvas id="myChart"></canvas>
+</div>
+<script>
+    let myChart = document.getElementById('myChart').getContext('2d');
+
+    let exampleChart = new Chart(myChart, {
+        type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+        data:{
+        labels:['Greater London', 'West Midlands', 'Greater Manchester', 'West Yorkshire', 'Merseyside', 'South Yorkshire', 'Tyne & Wear'],
+        datasets:[{
+            label:'Population'
+            data:[
+            8,173,941,  
+            2,736,460,
+            2,682,528,
+            2,226,058,
+            1,381,189,
+            1,343,601,
+            1,104,825
+            ]
+        }],
+        },
+        options:{}
+
+    });
+</script>
+    
+</body>
+</html>
