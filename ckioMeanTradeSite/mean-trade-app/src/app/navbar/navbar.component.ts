@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
   selector: 'app-navbar',
   template: `
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-    <a class="navbar-brand" href="#"><img src="assets/img/ckio logo.png" height=50px/> Trade App</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/"><img src="assets/img/ckio logo.png" height=50px/> Trade App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
@@ -33,6 +34,9 @@ import { Component, OnInit } from '@angular/core';
             <a class="nav-link" routerLink="/about">About</a>
           </li>
         </ul>
+        <div class="my-2 my-lg-0">
+          <app-quick-ticker-price></app-quick-ticker-price>
+        </div>
       </div>
     </nav>
   `,

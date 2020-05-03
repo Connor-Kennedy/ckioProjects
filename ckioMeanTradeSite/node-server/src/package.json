@@ -1,0 +1,13 @@
+{
+  "name": "mean-trade-app-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0",
+    "ws": "^7.2.5"
+  }
+}

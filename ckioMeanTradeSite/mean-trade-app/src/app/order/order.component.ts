@@ -3,9 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-order',
   template: `
-    <p>
-      order works!
-    </p>
+    <app-order-exec></app-order-exec>
+    <app-basic-chart></app-basic-chart>
   `,
   styles: [
   ]

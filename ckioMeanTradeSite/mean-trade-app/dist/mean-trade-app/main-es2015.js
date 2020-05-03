@@ -628,7 +628,7 @@ class PapertradingComponent {
 PapertradingComponent.ɵfac = function PapertradingComponent_Factory(t) { return new (t || PapertradingComponent)(); };
 PapertradingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: PapertradingComponent, selectors: [["app-papertrading"]], decls: 2, vars: 0, template: function PapertradingComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, " papertrading works! ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, " papertrading works well! ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } }, encapsulation: 2 });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](PapertradingComponent, [{
@@ -637,7 +637,7 @@ PapertradingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
                 selector: 'app-papertrading',
                 template: `
     <p>
-      papertrading works!
+      papertrading works well!
     </p>
   `,
                 styles: []

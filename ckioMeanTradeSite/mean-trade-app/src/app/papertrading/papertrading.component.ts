@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-papertrading',
   template: `
     <p>
-      papertrading works!
+      papertrading works well?!
     </p>
   `,
   styles: [
