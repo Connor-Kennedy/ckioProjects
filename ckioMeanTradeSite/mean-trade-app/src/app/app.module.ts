@@ -27,7 +27,7 @@ import { MatListModule } from '@angular/material/list';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountBannerComponent } from './utilities/account-banner/account-banner.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { SocketioService } from './socketio.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     OrderExecComponent,
     BasicChartComponent,
     DashboardComponent,
-    AccountBannerComponent
+    AccountBannerComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +61,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [SocketioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

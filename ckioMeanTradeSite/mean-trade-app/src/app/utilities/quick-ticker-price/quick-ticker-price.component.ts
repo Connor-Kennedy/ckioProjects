@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Subscription } from 'rxjs';
-import { Ticker } from 'src/app/ticker.model'
+import { Ticker } from 'src/app/ticker.model';
+import { SocketioService } from 'src/app/socketio.service';
 
 @Component({
   selector: 'app-quick-ticker-price',
@@ -27,6 +28,7 @@ export class QuickTickerPriceComponent implements OnInit, OnDestroy {
 
   tickers: Ticker[] = [];
   private tickerSub: Subscription;
+  private socketioSub: Subscription;
 
   changeTicker(ticker, price){
     this.ticker = ticker;
@@ -34,7 +36,7 @@ export class QuickTickerPriceComponent implements OnInit, OnDestroy {
 
   }
 
-  constructor(public apiService: ApiService) {}
+  constructor(public apiService: ApiService, public socketioService: SocketioService) {}
 
   ngOnInit() {
     this.apiService.getTickers();
@@ -42,10 +44,18 @@ export class QuickTickerPriceComponent implements OnInit, OnDestroy {
     .subscribe((tickers: Ticker[]) => {
       this.tickers = tickers;
     });
+
+    this.socketioSub = this.socketioService.getPriceUpdateListener()
+    .subscribe((price) => {
+      this.price = price;
+    });
   }
+
+
 
   ngOnDestroy() {
     this.tickerSub.unsubscribe();
+    this.socketioSub.unsubscribe();
   }
 
 }

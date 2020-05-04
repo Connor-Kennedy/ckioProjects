@@ -10,10 +10,6 @@ const WebSocket = require('ws');
 
 var lastTick = {};
 
-function updateLastTick() {
-    return lastTick;
-}
-
 const ws = new WebSocket('wss://ws.bitstamp.net', {
   perMessageDeflate: false
 });
@@ -29,6 +25,6 @@ ws.on('message', function incoming(data) {
 });
 
 
-exports.updateLastTick = updateLastTick;
+exports.lastTick = lastTick;
 
 

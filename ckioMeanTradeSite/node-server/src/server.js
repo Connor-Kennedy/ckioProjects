@@ -1,52 +1,37 @@
-const app = require("./app");
-const debug = require("debug")("node-angular");
-const http = require("http");
+const app = require('express')();
+const http = require('http').createServer(app);
+const socketServer = require('./socketio');
 
-const normalizePort = val => {
-  var port = parseInt(val, 10);
 
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header('Access-Control-Allow-Credentials', true);
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
+    next();
+  });
 
-  if (port >= 0) {
-    // port number
-    return port;
-  }
+// app.get('/api/btcusd', (req, res, next) => {
+//     var last = websocket.updateLastTick();
+//     res.status(200).send(last);
+// });
 
-  return false;
-};
+app.use('/api/tickers', (req, res, next) => {
+    const tickers = [
+        { id: 'awefwef', ticker: 'BTCUSD', lastPrice: "345345" },
+        { id: 'tyiolf', ticker: 'XRPUSD', lastPrice: "0.22245" },
+        { id: 'e56uu56eu', ticker: 'LTCUSD', lastPrice: "47.36" },
+        { id: 'jmhgjl', ticker: 'ETHUSD', lastPrice: "212.28" },
+        { id: 'awefoliio', ticker: 'BCHUSD', lastPrice: "254.59" }
+        
+    ];
+    res.status(200).json({
+        message: 'Tickers fetched successfully',
+        tickers: tickers
+    });
+    
+})
 
-const onError = error => {
-  if (error.syscall !== "listen") {
-    throw error;
-  }
-  const bind = typeof port === "string" ? "pipe " + port : "port " + port;
-  switch (error.code) {
-    case "EACCES":
-      console.error(bind + " requires elevated privileges");
-      process.exit(1);
-      break;
-    case "EADDRINUSE":
-      console.error(bind + " is already in use");
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-};
-
-const onListening = () => {
-  const addr = server.address();
-  const bind = typeof port === "string" ? "pipe " + port : "port " + port;
-  debug("Listening on " + bind);
-};
-
-const port = normalizePort(process.env.PORT || "3000");
-app.set("port", port);
-
-const server = http.createServer(app);
-server.on("error", onError);
-server.on("listening", onListening);
-server.listen(port);
+http.listen(3000, () => {
+  console.log('listening on *:3000');
+});
