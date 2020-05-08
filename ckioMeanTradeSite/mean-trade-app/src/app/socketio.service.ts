@@ -22,7 +22,7 @@ export class SocketioService {
     this.socket.emit('my message', 'Hello from Angular!');
 
     this.socket.on('btcusd', (data: string) => {
-      console.log(data);
+      //console.log(data);
       this.lastTick = JSON.parse(data);
       this.lastPrice = JSON.parse(data).data.price;
       this.priceUpdated.next(this.lastPrice);

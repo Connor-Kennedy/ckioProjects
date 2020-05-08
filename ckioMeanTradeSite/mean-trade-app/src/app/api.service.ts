@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Ticker } from './ticker.model';
 import { Subject } from 'rxjs';
+import { environment } from '../environments/environment';
 
 
 @Injectable({ providedIn: 'root'})
@@ -13,7 +14,7 @@ export class ApiService {
   constructor(private http: HttpClient){}
 
   getTickers(){
-    this.http.get<{message: string, tickers: Ticker[]}>('http://localhost:3000/api/tickers')
+    this.http.get<{message: string, tickers: Ticker[]}>(environment.API_ENDPOINT + '/api/tickers')
       // must be subscribed to get a response. no need to unsubscribe as angular handles this for http module.
       .subscribe((responseData) => {
         //this function is executed when we get a response
@@ -26,7 +27,7 @@ export class ApiService {
   }
 
   getPrice() {
-    return this.http.get('http://localhost:3000/api/BTCUSD');
+    return this.http.get(environment.API_ENDPOINT + '/api/BTCUSD');
   }
 
   getTickerUpdateListener(){

@@ -42,9 +42,10 @@ ws.on('open', function open() {
 });
 
 ws.on('message', function incoming(data) {
-    console.log(data);
+    //console.log(data);
+    //console.log("Bitstamp New Message")
     lastTick = JSON.parse(data);
-    console.log(lastTick);
+    //console.log(lastTick);
     io.emit('btcusd', `${data}`);
     
 });
