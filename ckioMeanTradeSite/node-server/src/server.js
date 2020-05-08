@@ -18,11 +18,11 @@ app.use((req, res, next) => {
 
 app.use('/api/tickers', (req, res, next) => {
     const tickers = [
-        { id: 'awefwef', ticker: 'BTCUSD', lastPrice: "345345" },
-        { id: 'tyiolf', ticker: 'XRPUSD', lastPrice: "0.22245" },
-        { id: 'e56uu56eu', ticker: 'LTCUSD', lastPrice: "47.36" },
-        { id: 'jmhgjl', ticker: 'ETHUSD', lastPrice: "212.28" },
-        { id: 'awefoliio', ticker: 'BCHUSD', lastPrice: "254.59" }
+        { id: 'awefwef', ticker: 'BTCUSD', lastPrice: "NULL" },
+        { id: 'tyiolf', ticker: 'XRPUSD', lastPrice: "NULL" },
+        { id: 'e56uu56eu', ticker: 'LTCUSD', lastPrice: "NULL" },
+        { id: 'jmhgjl', ticker: 'ETHUSD', lastPrice: "NULL" },
+        { id: 'awefoliio', ticker: 'BCHUSD', lastPrice: "NULL" }
         
     ];
     res.status(200).json({
@@ -31,7 +31,7 @@ app.use('/api/tickers', (req, res, next) => {
     });
     
 })
-
+// PORT 3000 IS REST API
 http.listen(3000, () => {
   console.log('listening on *:3000');
 });
