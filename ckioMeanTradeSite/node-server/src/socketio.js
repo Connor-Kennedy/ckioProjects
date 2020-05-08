@@ -31,8 +31,8 @@ io.on('connection', (socket) => {
   });
 
 });
-http.listen(3001, () => {
-  console.log('listening on *:3001');
+http.listen(8098, () => {
+  console.log('listening on *:8098');
 });
 
 var lastTick = {};

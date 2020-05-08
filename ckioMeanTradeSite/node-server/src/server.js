@@ -4,7 +4,7 @@ const socketServer = require('./socketio');
 
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8096");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Credentials', true);
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
@@ -32,6 +32,6 @@ app.use('/api/tickers', (req, res, next) => {
     
 })
 // PORT 3000 IS REST API
-http.listen(3000, () => {
-  console.log('listening on *:3000');
+http.listen(8097, () => {
+  console.log('listening on *:8097');
 });
