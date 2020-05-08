@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  SOCKET_ENDPOINT: 'http://localhost:3001',
-  API_ENDPOINT: 'http://localhost:3000'
+  SOCKET_ENDPOINT: 'trade-socket.c-k.io',
+  API_ENDPOINT: 'trade-api.c-k.io'
 };
