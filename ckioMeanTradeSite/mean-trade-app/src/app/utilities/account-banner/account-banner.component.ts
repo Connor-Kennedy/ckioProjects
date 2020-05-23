@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-account-banner',
   template: `
-    <div class="alert alert-primary" role="alert" >
+    <div class="alert alert-warning" role="alert" >
       <div class="row justify-content-end">
         <form class="form-inline">
         <div class="form-group mx-sm-3 mb-2">

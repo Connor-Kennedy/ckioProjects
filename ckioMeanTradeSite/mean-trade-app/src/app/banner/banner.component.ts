@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-banner',
   template: `
-    <div class="alert alert-primary" role="alert" >
+    <div class="alert bg-danger" role="alert" >
         Under Development!
     </div>
   `,

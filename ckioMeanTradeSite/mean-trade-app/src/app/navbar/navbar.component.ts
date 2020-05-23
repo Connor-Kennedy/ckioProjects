@@ -4,7 +4,7 @@ import {MatMenuModule} from '@angular/material/menu';
 @Component({
   selector: 'app-navbar',
   template: `
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
     <a class="navbar-brand" href="/"><img src="assets/img/ckio logo.png" height=50px/> Trade App</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -23,11 +23,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatRadioModule} from '@angular/material/radio';
 import { MatListModule } from '@angular/material/list';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountBannerComponent } from './utilities/account-banner/account-banner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SocketioService } from './socketio.service';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import { SocketioService } from './socketio.service';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatRadioModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [SocketioService],
   bootstrap: [AppComponent]
