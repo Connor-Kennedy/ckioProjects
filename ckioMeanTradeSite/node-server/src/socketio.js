@@ -1,6 +1,8 @@
 const app = require('express')();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+const request = require('request');
+
 //const websocket = require('./websocket');
 
 const WebSocket = require('ws');
@@ -49,3 +51,15 @@ ws.on('message', function incoming(data) {
     io.emit('btcusd', `${data}`);
     
 });
+
+var latestChart = {}
+
+request("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo", { json: true }, (err, res, body) => {
+  if (err) { return console.log(err); } 
+  console.log(body);
+  
+})
+
+
+
+
