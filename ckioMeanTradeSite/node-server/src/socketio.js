@@ -3,6 +3,8 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const request = require('request');
 
+var latestChart;
+
 //const websocket = require('./websocket');
 
 const WebSocket = require('ws');
@@ -24,6 +26,7 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+  io.emit('chartUpdate', latestChart);
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
@@ -45,21 +48,23 @@ ws.on('open', function open() {
 
 ws.on('message', function incoming(data) {
     //console.log(data);
-    //console.log("Bitstamp New Message")
+    console.log("Bitstamp New Message")
     lastTick = JSON.parse(data);
     //console.log(lastTick);
     io.emit('btcusd', `${data}`);
     
 });
 
-var latestChart = {}
 
-request("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo", { json: true }, (err, res, body) => {
+
+// TODO this needs to be imporoved to GET at every 1ms (for example) after minute close for live tick update
+
+setInterval(() => {
+  request("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BTCUSD&interval=1min&apikey=CKRYKXQLKX8PIKTN", { json: true }, (err, res, body) => {
   if (err) { return console.log(err); } 
+  latestChart = JSON.stringify(body);
   console.log(body);
+  io.emit('chartUpdate',JSON.stringify(body));
   
 })
-
-
-
-
+}, 60000);

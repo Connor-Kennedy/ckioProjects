@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Chart } from 'chart.js';
 import { SocketioService } from 'src/app/socketio.service';
 import { Subscription } from 'rxjs';
+import { createChart } from 'lightweight-charts';
 
 @Component({
   selector: 'app-basic-chart',
@@ -47,9 +48,16 @@ export class BasicChartComponent implements OnInit, OnDestroy {
     this.selectedTimeFrame = newTimeFrame;
   }
 
-
   private socketioSub: Subscription;
   lastPrice;
+
+  private chartClosePricesSub: Subscription;
+  private chartLabelsSub: Subscription;
+
+
+  labels = ["1", "3", "3", "7"];
+  closePrices = ["1", "3", "3", "7"];
+
 
   ngOnInit(): void {
 
@@ -58,37 +66,42 @@ export class BasicChartComponent implements OnInit, OnDestroy {
         this.lastPrice = price;
       });
 
+    this.chartClosePricesSub = this.socketioService.getClosePriceUpdateListener()
+      .subscribe((data) => {
+        // this.closePrices = data;
+        // console.log(this.closePrices);
+        myChart.data.datasets[0].data.pop();
+        myChart.data.datasets[0].data = data;
+        myChart.update();
+
+      })
+
+    this.chartLabelsSub = this.socketioService.getLabelsUpdateListener()
+      .subscribe((data) => {
+        // this.labels = data;
+        // console.log(this.labels);
+
+        myChart.data.labels.pop();
+        myChart.data.labels = data;
+        myChart.update();
+      })
+
+
+
     var myChart = new Chart("myChart", {
       type: 'line',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: this.labels,
           datasets: [{
-              label: '# of Votes',
-              data: [9900, 9200, 6400, 7600, 8500, 9000],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
+              label: '£££',
+              data: this.closePrices,
           }]
       },
       options: {
           scales: {
               yAxes: [{
                   ticks: {
-                      beginAtZero: true
+                      beginAtZero: false
                   }
               }]
           }
@@ -98,6 +111,8 @@ export class BasicChartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.socketioSub.unsubscribe();
+    this.chartClosePricesSub.unsubscribe();
+    this.chartLabelsSub.unsubscribe();
   }
 
 }
