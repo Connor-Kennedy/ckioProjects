@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS searchItems (
+    item TEXT PRIMARY KEY    
+);

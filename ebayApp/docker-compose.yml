@@ -1,0 +1,43 @@
+version: '3'
+
+volumes:
+    ebay_app_database:
+        
+services:
+    ebay_app_database:
+        build: ./ebay_app_database
+        volumes:
+            - /ebay_app_database/data:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
+    
+    ebay_app_database_loader:
+        build: ./ebay_app_database_loader
+        depends_on: 
+            - ebay_app_database
+
+    ebay_app_database_rest:
+        image: postgrest/postgrest
+        ports:
+            - "3000:3000"
+
+        environment:
+            # PGRST_DB_URI: postgres://app_user:password@db:5432/app_db
+     
+            PGRST_DB_URI: postgres://docker:docker@ebay_app_database:5432/ebay_app_database
+            PGRST_DB_SCHEMA: public
+            PGRST_DB_ANON_ROLE: docker #In production this role should not be the same as the one used for the connection
+        depends_on:
+            - ebay_app_database
+    
+    ebay_app_website:
+        build: ./ebay_app_website
+        
+        volumes: 
+            - ./ebay_app_website/src:/var/www/html
+        ports: 
+            - 3001:80
+        depends_on:
+            - ebay_app_database_rest
+
+            # docker run --name ebay_app_database -v ebay_app_database:/var/lib/postgresql/data -p 5432:5432 -d atlay/ebay_app_database

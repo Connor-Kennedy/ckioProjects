@@ -1,0 +1,1 @@
+print("a script to load data to DB")
