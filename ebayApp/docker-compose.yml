@@ -7,7 +7,7 @@ services:
     ebay_app_database:
         build: ./ebay_app_database
         volumes:
-            - /ebay_app_database/data:/var/lib/postgresql/data
+            - ebay_app_database:/var/lib/postgresql/data
         ports:
             - 5432:5432
     
@@ -20,6 +20,8 @@ services:
         image: postgrest/postgrest
         ports:
             - "3000:3000"
+        links:
+            - ebay_app_database:ebay_app_database
 
         environment:
             # PGRST_DB_URI: postgres://app_user:password@db:5432/app_db
